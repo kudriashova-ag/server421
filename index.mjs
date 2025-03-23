@@ -1,6 +1,8 @@
 import express from 'express'
 import dbConnection from './db/db.mjs'
+import cors from 'cors'
 import { createTask, deleteTask, getTasks, updateTask } from './controllers/taskController.mjs'
+
 const app = express()
 const port = 5000
 
@@ -8,6 +10,7 @@ dbConnection.on('connected', () => console.log('db connected'));
 dbConnection.on('error', () => console.log('db connected error'));
 
 app.use(express.json())
+app.use(cors())
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
